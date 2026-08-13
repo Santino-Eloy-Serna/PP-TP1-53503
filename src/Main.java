@@ -5,7 +5,7 @@ public class Main {
 
         fiesta.mostrar();
 
-        EventoUniversitario conferencia = new EventoUniversitario("concierto", 10900.0, false);
+        EventoUniversitario conferencia = new EventoUniversitario("Concierto", 0.0, true);
 
         conferencia.mostrar();
 

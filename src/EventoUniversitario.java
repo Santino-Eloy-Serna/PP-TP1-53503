@@ -15,6 +15,21 @@ public class EventoUniversitario {
         this.Id = "Ev-#"+1000+num;
     }
 
+/*    public EventoUniversitario(String Id, EventoUniversitario otro) {
+        this.Id = otro.Id;
+        this.titulo = otro.titulo;
+        this.costoBase = otro.costoBase;
+        this.gratuito = otro.gratuito;
+        cantidadEventos++;
+    }
+    Voy a dejarlo como comentario por motivos practicos
+    */
+
+    /*La funcion del segundo constructor es para "copiar" un objeto ya existente.
+    * Un explicacion resumida seria: Que este nuevo contructor toma todo un objeto ya creado
+    * como el onjeto Fiesta o conferencia, y lo copia de forma excata, creando un objeto identico
+    * DEBO PROFUNDIZAR MAS EN ESTA "TECNICA"*/
+
     public String getId() {
         return Id;
     }
