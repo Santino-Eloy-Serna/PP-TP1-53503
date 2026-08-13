@@ -15,15 +15,13 @@ public class EventoUniversitario {
         this.Id = "Ev-#"+1000+num;
     }
 
-/*    public EventoUniversitario(String Id, EventoUniversitario otro) {
+    public EventoUniversitario(String Id, EventoUniversitario otro) {
         this.Id = otro.Id;
         this.titulo = otro.titulo;
         this.costoBase = otro.costoBase;
         this.gratuito = otro.gratuito;
         cantidadEventos++;
     }
-    Voy a dejarlo como comentario por motivos practicos
-    */
 
     /*La funcion del segundo constructor es para "copiar" un objeto ya existente.
     * Un explicacion resumida seria: Que este nuevo contructor toma todo un objeto ya creado
@@ -66,9 +64,23 @@ public class EventoUniversitario {
         EventoUniversitario.cantidadEventos = cantidadEventos;
     }
 
+    public double CCE(){
+        System.out.print("El costo estimado es de: ");
+        return costoBase;
+    }
+    // CCE = Calculo de Costo Estimado
+
+    public void AS(){
+        System.out.println("Se asigna a este evento la sala: "+Id);
+    }
+    //AS = Asignar Sala
+
     public void mostrar(){
         System.out.println("El evento "+titulo+" con costo "+costoBase+" con id "+Id+" y con la cantidad de eventos de "+cantidadEventos);
         System.out.println("Actualmente el evento es gratuito? -"+gratuito);
     }
 
+    public int getcantidadEventos() {
+        return cantidadEventos;
+    }
 }
