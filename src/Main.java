@@ -19,22 +19,23 @@ public class Main {
 
         fiesta1.AS();
         fiesta1.CA();
-        fiesta1.CCE();
+        System.out.println(fiesta1.CCE());
         fiesta2.AS();
         fiesta2.CA();
-        fiesta2.CCE();
+        System.out.println(fiesta2.CCE());
 
         conferencia1.AS();
         conferencia1.CA();
-        conferencia1.CCE();
+        System.out.println(conferencia1.CCE());
         conferencia2.AS();
         conferencia2.CA();
-        conferencia2.CCE();
+        System.out.println(conferencia2.CCE());
 
         fiesta1.mostrar();
         fiesta2.mostrar();
         conferencia1.mostrar();
         conferencia2.mostrar();
+        System.out.println("La cantidad de eventos son: "+EventoUniversitario.getCantidadEventos());
 
     }
 
