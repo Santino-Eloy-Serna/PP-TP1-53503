@@ -4,15 +4,17 @@ public class EventoUniversitario {
     private double costoBase;
     private boolean gratuito;
     private static int cantidadEventos;
-    static int num;
+
+    static{
+        cantidadEventos = 0;
+    }
 
     public EventoUniversitario(String titulo, double costoBase, boolean gratuito) {
         this.titulo = titulo;
         this.costoBase = costoBase;
         this.gratuito = gratuito;
         cantidadEventos++;
-        num++;
-        this.Id = "Ev-#"+1000+num;
+        this.Id = "EVT-"+cantidadEventos;
     }
 
     public EventoUniversitario(String Id, EventoUniversitario otro) {
