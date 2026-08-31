@@ -4,7 +4,7 @@ public class Actividad {
     private int id;
     private String titulo;
     private int cupoMax;
-    private final int cupoMin = 0;
+    private final int cupoMin = 1;
     private List<Inscripcion> inscripciones;
 
     public int getId() {

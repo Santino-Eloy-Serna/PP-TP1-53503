@@ -9,7 +9,7 @@ public class EventoUniversitario {
     private static int cantidadEventos;
     private static int contador;
     private List<Actividad> actividades;
-    private List<Sala> Salas;
+    private Sala sala;
 
     static{
         cantidadEventos = 0;
@@ -84,12 +84,12 @@ public class EventoUniversitario {
         this.actividades = actividades;
     }
 
-    public List<Sala> getSalas() {
-        return Salas;
+    public Sala getSala() {
+        return sala;
     }
 
-    public void setSalas(List<Sala> salas) {
-        Salas = salas;
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
     public static void setCantidadEventos(int cantidadEventos) {
