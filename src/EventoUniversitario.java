@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventoUniversitario {
@@ -7,13 +8,11 @@ public class EventoUniversitario {
     private double costoBase;
     private boolean gratuito;
     private static int cantidadEventos;
-    private static int contador;
-    private List<Actividad> actividades;
+    private List<Actividad> actividades = new ArrayList<>();
     private Sala sala;
 
     static{
         cantidadEventos = 0;
-        contador = 0;
     }
 
     public EventoUniversitario(String titulo, double costoBase, boolean gratuito) {
@@ -26,7 +25,7 @@ public class EventoUniversitario {
 
     public EventoUniversitario(String Id, EventoUniversitario otro) {
         this.Id = otro.Id+"-CLON";
-        this.titulo = otro.titulo;
+        this.titulo = otro.titulo+"-CLON";
         this.costoBase = otro.costoBase;
         this.gratuito = otro.gratuito;
     }
@@ -68,14 +67,6 @@ public class EventoUniversitario {
         return cantidadEventos;
     }
 
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        EventoUniversitario.contador = contador;
-    }
-
     public List<Actividad> getActividades() {
         return actividades;
     }
@@ -102,21 +93,21 @@ public class EventoUniversitario {
     }
     // CCE = Calculo de Costo Estimado
 
-    public void AS(){
-        System.out.println("Se asigna al evento "+titulo+" la sala: "+Id);
+    public void AS(Sala sala){
+        setSala(sala);
+        System.out.println("Se asigno la sala "+sala.getId()+" al evento "+titulo);
     }
     //AS = Asignar Sala
 
-    public void CA(){
-        System.out.println("La actividad del evento "+titulo+" fue creada");
-        contador ++;
+    public void CA(Actividad actividad){
+        actividades.add(actividad);
+        System.out.println("La actividad "+actividad.getTitulo()+" del evento "+titulo+" fue creada");
     }
     //CA = Crear Actividad
 
     public void mostrar(){
         System.out.println("El evento "+titulo+" con costo "+costoBase+" con id "+Id+" y con la cantidad de eventos de "+cantidadEventos);
-        System.out.println("Actualmente el evento es gratuito? -"+gratuito);
-        System.out.println("Actualmente el evento "+titulo+" cuenta con "+contador+" actividades");
+        System.out.println("Actualmente el evento es gratuito? -"+gratuito);;
     }
 }
 

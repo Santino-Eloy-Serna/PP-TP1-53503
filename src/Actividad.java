@@ -63,6 +63,7 @@ public class Actividad {
             System.out.println("Legajo: " +i.getEstudiante().getLegajo());
             System.out.println("Fecha de Inscripcion: " +i.getFecha());
             System.out.println("Estado: " +i.getEstado());
+            System.out.println();
         }
     }
 }
