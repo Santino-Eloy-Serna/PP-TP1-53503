@@ -2,7 +2,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Actividad {
+/*Debido a que cambie la clase Actividad a una clase Abstracta, tengo que reestructurar el codigo y en el Main
+* corregir las partes donde el codigo toma a la clase como no abstracta (Yo me entiendo)*/
+
+public abstract class Actividad {
     private int id;
     private String titulo;
     private int cupoMax;
@@ -65,5 +68,18 @@ public class Actividad {
             System.out.println("Estado: " +i.getEstado());
             System.out.println();
         }
+    }
+
+    public final void MI(){
+        //MI = Mostrar Identificacion
+    }
+
+    public double calcularCM(){
+        //CM = Costo Materiales
+        return 0;
+    }
+
+    public String getTipo(){
+        return null;
     }
 }
