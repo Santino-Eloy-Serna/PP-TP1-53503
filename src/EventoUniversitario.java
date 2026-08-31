@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.util.List;
+
 public class EventoUniversitario {
     private final String Id;
     private String titulo;
@@ -5,6 +8,8 @@ public class EventoUniversitario {
     private boolean gratuito;
     private static int cantidadEventos;
     private static int contador;
+    private List<Actividad> actividades;
+    private List<Sala> Salas;
 
     static{
         cantidadEventos = 0;
@@ -61,6 +66,30 @@ public class EventoUniversitario {
 
     public static int getCantidadEventos() {
         return cantidadEventos;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int contador) {
+        EventoUniversitario.contador = contador;
+    }
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+
+    public List<Sala> getSalas() {
+        return Salas;
+    }
+
+    public void setSalas(List<Sala> salas) {
+        Salas = salas;
     }
 
     public static void setCantidadEventos(int cantidadEventos) {
