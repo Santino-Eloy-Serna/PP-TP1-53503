@@ -47,20 +47,13 @@ public class Main {
 
         //Muestro datos general, para mayor "orden" a la hora de ver el resultado
         //agrego saltos de linea en medio de cada mostrar
-        fiesta1.mostrar();
-        System.out.println();
-        fiesta2.mostrar();
-        System.out.println();
-        conferencia1.mostrar();
-        System.out.println();
-        conferencia2.mostrar();
-        System.out.println();
         actividad1.mostrarInscripciones();
-        System.out.println();
+        actividad2.mostrarInscripciones();
 
         fiesta1.AS(sala1);
         fiesta1.CA(actividad1);
         System.out.println(fiesta1.CCE());
+        System.out.println();
         fiesta2.AS(sala1);
         fiesta2.CA(actividad1);
         System.out.println(fiesta2.CCE());
@@ -69,6 +62,7 @@ public class Main {
         conferencia1.AS(sala2);
         conferencia1.CA(actividad2);
         System.out.println(conferencia1.CCE());
+        System.out.println();
         conferencia2.AS(sala2);
         conferencia2.CA(actividad2);
         System.out.println(conferencia2.CCE());
