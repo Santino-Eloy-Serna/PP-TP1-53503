@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Actividad {
@@ -5,7 +7,7 @@ public class Actividad {
     private String titulo;
     private int cupoMax;
     private final int cupoMin = 1;
-    private List<Inscripcion> inscripciones;
+    private List<Inscripcion> inscripciones = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -41,5 +43,26 @@ public class Actividad {
 
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
+    }
+
+    public Inscripcion inscribir(Estudiante estudiante){
+        Inscripcion inscripto = new Inscripcion();
+
+        inscripto.setEstudiante(estudiante);
+        inscripto.setEstado("Habilitad");
+        inscripto.setFecha(LocalDate.now());
+
+        inscripciones.add(inscripto);
+
+        return inscripto;
+    }
+
+    public void mostrarInscripciones(){
+        for (Inscripcion i : inscripciones){
+            System.out.println("Estudiante: " +i.getEstudiante().getNombre());
+            System.out.println("Legajo: " +i.getEstudiante().getLegajo());
+            System.out.println("Fecha de Inscripcion: " +i.getFecha());
+            System.out.println("Estado: " +i.getEstado());
+        }
     }
 }
