@@ -1,5 +1,8 @@
-public class Main {
+import java.util.Scanner;
+
+public class APP {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         //Creo eventos universitarios y sus "copias"
         EventoUniversitario fiesta1 = new EventoUniversitario("Fiesta", 10900.0, false);
@@ -30,11 +33,11 @@ public class Main {
         sala2.setNombre("Laboratorio Quimica");
 
         //Creo Actividad
-        Actividad actividad1 = new Actividad();
+        Actividad actividad1 = new Charla();
         actividad1.setId(10001); //Debido a mi gusto del uso de ceros, dejaré esta actividad asi
         actividad1.setCupoMax(50);
         actividad1.setTitulo("Cumpleaños"); //No soy tan creativo
-        Actividad actividad2 = new Actividad();
+        Actividad actividad2 = new Taller();
         actividad2.setId(20001);
         actividad2.setCupoMax(35);
         actividad2.setTitulo("Seguridad e Higiene");

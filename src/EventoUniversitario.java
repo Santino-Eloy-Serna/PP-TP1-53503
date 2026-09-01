@@ -99,9 +99,23 @@ public class EventoUniversitario {
     }
     //AS = Asignar Sala
 
-    public void CA(Actividad actividad){
-        actividades.add(actividad);
-        System.out.println("La actividad "+actividad.getTitulo()+" del evento "+titulo+" fue creada");
+    public Actividad CA(String tipo){
+       Actividad actividad;
+
+       switch (tipo.toLowerCase()) {
+           case "Charla":
+               actividad = new Charla();
+               break;
+           case "Taller":
+               actividad = new Taller();
+               break;
+           default:
+               System.out.println("Error: Actividad solicitada no encontrada");
+               return null;
+       }
+       actividades.add(actividad);
+       System.out.println("Se creo una actividad de tipo "+tipo+" en el evento "+titulo);
+       return actividad;
     }
     //CA = Crear Actividad
 
