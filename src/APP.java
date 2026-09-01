@@ -44,7 +44,7 @@ public class APP {
                    boolean G;
                    G = R.equals("si") || R.equals("S") || R.equals("Si");
                    EventoUniversitario evento = new EventoUniversitario("EVT"+id,T,costo,G);
-                   EventoUniversitario evento1 = new EventoUniversitario(null,evento);
+                   EventoUniversitario evento1 = new EventoUniversitario("EVT"+id,evento);
 
                    System.out.println("Ingrese el nombre de la sala que se asignara al evento: ");
                    String S = scanner.nextLine();
@@ -65,7 +65,6 @@ public class APP {
                         System.out.println("La actividad es una Charla o un Taller?");
                         String tipo = scanner.nextLine().trim().toLowerCase();
                         evento.CA(idA,NA,C,tipo);
-                        evento1.CA(idA,NA,C,tipo);
                         CAN = false;
 
                         System.out.println("Desea crear otro Actividad para este evento? S/N");
@@ -94,8 +93,6 @@ public class APP {
                                     -- NID;
                                     Actividad actividad = evento.getActividades().get(NID);
                                     actividad.inscribir(estudiante);
-                                    Actividad actividad1 = evento1.getActividades().get(NID);
-                                    actividad1.inscribir(estudiante);
                                 }
                             }
                             CAN = false;
@@ -125,6 +122,8 @@ public class APP {
                default:
                    System.out.println("Valor irreconocible, ingrese un valor valido");
            }
+
+           System.out.println("La cantidad de eventos son: "+EventoUniversitario.getCantidadEventos());
        }
 
 

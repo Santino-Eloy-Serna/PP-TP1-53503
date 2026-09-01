@@ -25,7 +25,7 @@ public class EventoUniversitario {
     }
 
     public EventoUniversitario(String Id, EventoUniversitario otro) {
-        this.Id = otro.Id+"-CLON";
+        this.Id = Id+"-CLON";
         this.titulo = otro.titulo+"-CLON";
         this.costoBase = otro.costoBase;
         this.gratuito = otro.gratuito;
@@ -124,10 +124,7 @@ public class EventoUniversitario {
            case "taller":
                System.out.println("El Taller "+titulo+" requiere uso de NoteBook? (S/N)");
                String respuesta = scanner.nextLine().trim().toLowerCase();
-               boolean PNB = false;
-               if (respuesta == "s") {
-                    PNB = true;
-               }
+               boolean PNB = respuesta.equals("s") || respuesta.equals("si");
                Actividad taller = new Taller(id,titulo,PNB,cupo);
                this.actividades.add(taller);
                System.out.println("Se creo una actividad de tipo "+tipo+" en el evento "+titulo);
