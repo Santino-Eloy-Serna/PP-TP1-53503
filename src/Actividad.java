@@ -74,12 +74,7 @@ public abstract class Actividad {
         //MI = Mostrar Identificacion
     }
 
-    public double calcularCM(){
-        //CM = Costo Materiales
-        return 0;
-    }
+    public abstract double calcularCM();
 
-    public String getTipo(){
-        return null;
-    }
+    public abstract String getTipo();
 }
