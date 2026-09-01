@@ -1,85 +1,132 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class APP {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        List<Estudiante> estudiantes = new ArrayList<>();
+        int id = 1;
+        boolean TER = true;
 
-        //Creo eventos universitarios y sus "copias"
-        EventoUniversitario fiesta1 = new EventoUniversitario("Fiesta", 10900.0, false);
-        EventoUniversitario fiesta2 = new EventoUniversitario(null,fiesta1);
-        EventoUniversitario conferencia1 = new EventoUniversitario("Conferencia", 0.0, true);
-        EventoUniversitario conferencia2 = new EventoUniversitario(null,conferencia1);
+       while(TER) {
+           System.out.println("Ingrese que desea hacer: ");
+           System.out.println("Registrar Estudiante (RE)");
+           System.out.println("Crear Evento (CE)");
+           //Crear un evento implica crear minimo una actividad, asignar una sala e inscribir un estudiante (Por ahora)
+           String respuesta = scanner.nextLine().toLowerCase();
 
-        //Creo Estudiantes
-        Estudiante estudiante1 = new Estudiante();
-        estudiante1.setLegajo("0001");
-        estudiante1.setNombre("Judas");
-        Estudiante estudiante2 = new Estudiante();
-        estudiante2.setLegajo("0002");
-        estudiante2.setNombre("Jesus");
-        Estudiante estudiante3 = new Estudiante();
-        estudiante3.setLegajo("0003");
-        estudiante3.setNombre("Pedro");
-        Estudiante estudiante4 = new Estudiante();
-        estudiante4.setLegajo("0004");
-        estudiante4.setNombre("Tomas");
+           switch (respuesta){
+               case "re":
+                   System.out.println("Ingrese el nombre del Estudiante: ");
+                   String N = scanner.nextLine();
+                   System.out.println("Ingrese el legajo del Estudiante: ");
+                   String L = scanner.nextLine();
 
-        //Creo Salas
-        Sala sala1 = new Sala();
-        sala1.setId(1);
-        sala1.setNombre("Laboratorio Fisica");
-        Sala sala2 = new Sala();
-        sala2.setId(2);
-        sala2.setNombre("Laboratorio Quimica");
+                   estudiantes.add(new Estudiante(L,N));
 
-        //Creo Actividad
-        Actividad actividad1 = new Charla();
-        actividad1.setId(10001); //Debido a mi gusto del uso de ceros, dejaré esta actividad asi
-        actividad1.setCupoMax(50);
-        actividad1.setTitulo("Cumpleaños"); //No soy tan creativo
-        Actividad actividad2 = new Taller();
-        actividad2.setId(20001);
-        actividad2.setCupoMax(35);
-        actividad2.setTitulo("Seguridad e Higiene");
+                   System.out.println("Desea hacer algo mas? S/N o Si/No");
+                   String Res = scanner.nextLine().trim().toLowerCase();
 
-        //Ahora inscribo Estudiantes a mi actividad
-        actividad1.inscribir(estudiante1);
-        actividad1.inscribir(estudiante2);
-        actividad2.inscribir(estudiante3);
-        actividad2.inscribir(estudiante4);
+                   if (Res.equals("n") || Res.equals("no")){
+                       TER = false;
+                       System.out.println("Hasta luego");
+                   }
+                   break;
+               case "ce":
+                   System.out.println("Ingrese el nombre del evento:");
+                   String T = scanner.nextLine();
+                   System.out.println("Ingrese el costo base del evento:");
+                   double costo = scanner.nextDouble();
+                   scanner.nextLine();
+                   System.out.println("El evento tendra costo para los estudiantes?");
+                   String R = scanner.nextLine().trim().toLowerCase();
+                   boolean G;
+                   G = R.equals("si") || R.equals("S") || R.equals("Si");
+                   EventoUniversitario evento = new EventoUniversitario("EVT"+id,T,costo,G);
+                   EventoUniversitario evento1 = new EventoUniversitario(null,evento);
 
-        //Muestro datos general, para mayor "orden" a la hora de ver el resultado
-        //agrego saltos de linea en medio de cada mostrar
-        actividad1.mostrarInscripciones();
-        actividad2.mostrarInscripciones();
+                   System.out.println("Ingrese el nombre de la sala que se asignara al evento: ");
+                   String S = scanner.nextLine();
 
-        fiesta1.AS(sala1);
-        fiesta1.CA(actividad1);
-        System.out.println(fiesta1.CCE());
-        System.out.println();
-        fiesta2.AS(sala1);
-        fiesta2.CA(actividad1);
-        System.out.println(fiesta2.CCE());
-        System.out.println();
+                   Sala sala = new Sala(id,S);
+                   evento.AS(sala);
+                   evento1.AS(sala);
 
-        conferencia1.AS(sala2);
-        conferencia1.CA(actividad2);
-        System.out.println(conferencia1.CCE());
-        System.out.println();
-        conferencia2.AS(sala2);
-        conferencia2.CA(actividad2);
-        System.out.println(conferencia2.CCE());
-        System.out.println();
+                   int idA = 1;
+                   boolean CAN = true;
 
-        fiesta1.mostrar();
-        System.out.println();
-        fiesta2.mostrar();
-        System.out.println();
-        conferencia1.mostrar();
-        System.out.println();
-        conferencia2.mostrar();
-        System.out.println();
-        System.out.println("La cantidad de eventos son: "+EventoUniversitario.getCantidadEventos());
+                    while (CAN){
+                        System.out.println("Ingrese el nombre de la Actividad: ");
+                        String NA = scanner.nextLine();
+                        System.out.println("Ingrese el cupo maximo de estudiantes para la Actividad: ");
+                        int C = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("La actividad es una Charla o un Taller?");
+                        String tipo = scanner.nextLine().trim().toLowerCase();
+                        evento.CA(idA,NA,C,tipo);
+                        evento1.CA(idA,NA,C,tipo);
+                        CAN = false;
+
+                        System.out.println("Desea crear otro Actividad para este evento? S/N");
+                        String Re = scanner.nextLine().trim().toLowerCase();
+
+                        if (Re.equals("s") || Re.equals("si")){
+                            CAN = true;
+                            ++idA;
+                        }
+                    }
+
+                    if (estudiantes.isEmpty()){
+                        System.out.println("No hay estudiantes para registrar");
+                    } else {
+                        CAN = true;
+
+                        while (CAN){
+                            System.out.println("Ingrese el legajo del estudiante que dese inscribir: ");
+                            String legajo = scanner.nextLine();
+                            System.out.println("Ingrese el id de la Actividad a inscribirse: ");
+                            int NID = scanner.nextInt();
+                            scanner.nextLine();
+
+                            for (Estudiante estudiante : estudiantes){
+                                if (estudiante.getLegajo().equals(legajo)){
+                                    -- NID;
+                                    Actividad actividad = evento.getActividades().get(NID);
+                                    actividad.inscribir(estudiante);
+                                    Actividad actividad1 = evento1.getActividades().get(NID);
+                                    actividad1.inscribir(estudiante);
+                                }
+                            }
+                            CAN = false;
+
+                            System.out.println("Desea inscribir a otro Estudiante? S/N");
+                            String Re = scanner.nextLine().trim().toLowerCase();
+
+                            if (Re.equals("s") || Re.equals("si")){
+                                CAN = true;
+                            }
+                        }
+                    }
+
+                   evento.mostrar();
+                   evento1.mostrar();
+
+                   System.out.println("La cantidad de eventos son: "+EventoUniversitario.getCantidadEventos());
+
+                   System.out.println("Desea hacer algo mas? S/N o Si/No");
+                   Res = scanner.nextLine().trim().toLowerCase();
+
+                   if (Res.equals("n") || Res.equals("no")){
+                       TER = false;
+                       System.out.println("Hasta luego");
+                   }
+                   break;
+               default:
+                   System.out.println("Valor irreconocible, ingrese un valor valido");
+           }
+       }
+
 
     }
 

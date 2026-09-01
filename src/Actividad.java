@@ -12,6 +12,13 @@ public abstract class Actividad {
     private final int cupoMin = 1;
     private List<Inscripcion> inscripciones = new ArrayList<>();
 
+    public Actividad(int id, String titulo, int cupo) {
+        this.id = id;
+        this.titulo = titulo;
+        this.cupoMax = Math.max(cupo, cupoMin);
+        this.inscripciones = new ArrayList<>();
+    }
+
     public int getId() {
         return id;
     }
@@ -52,7 +59,7 @@ public abstract class Actividad {
         Inscripcion inscripto = new Inscripcion();
 
         inscripto.setEstudiante(estudiante);
-        inscripto.setEstado("Habilitad");
+        inscripto.setEstado("Habilitado");
         inscripto.setFecha(LocalDate.now());
 
         inscripciones.add(inscripto);
@@ -72,6 +79,7 @@ public abstract class Actividad {
 
     public final void MI(){
         //MI = Mostrar Identificacion
+        System.out.println("- " + getTipo() + ": "+titulo+" (id="+id+") - Cupo máximo: "+cupoMax);
     }
 
     public abstract double calcularCM();

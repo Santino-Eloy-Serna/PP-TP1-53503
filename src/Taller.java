@@ -1,6 +1,11 @@
 public class Taller extends Actividad{
     private  boolean PNB; //PNB = Pide NoteBook
 
+    public Taller(int id, String titulo, boolean PNB, int cupo) {
+        super(id, titulo, cupo);
+        this.PNB = PNB;
+    }
+
     public boolean isPNB() {
         return PNB;
     }
@@ -20,6 +25,6 @@ public class Taller extends Actividad{
 
     @Override
     public String getTipo(){
-        return "Taller";
+        return "taller";
     }
 }

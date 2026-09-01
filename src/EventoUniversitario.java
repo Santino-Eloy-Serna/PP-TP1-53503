@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EventoUniversitario {
     private final String Id;
@@ -15,12 +16,12 @@ public class EventoUniversitario {
         cantidadEventos = 0;
     }
 
-    public EventoUniversitario(String titulo, double costoBase, boolean gratuito) {
+    public EventoUniversitario(String id, String titulo, double costoBase, boolean gratuito) {
+        this.Id = id;
         this.titulo = titulo;
-        this.costoBase = costoBase;
         this.gratuito = gratuito;
+        this.costoBase = this.gratuito ? (double)0.0F : costoBase;
         cantidadEventos++;
-        this.Id = "EVT-"+cantidadEventos;
     }
 
     public EventoUniversitario(String Id, EventoUniversitario otro) {
@@ -88,8 +89,17 @@ public class EventoUniversitario {
     }
 
     public double CCE(){
-        System.out.print("El costo estimado del evento "+titulo+" es de: ");
-        return costoBase;
+        if (this.gratuito) {
+            return 0.0;
+        }
+
+        double CT = costoBase;
+
+        for (Actividad actividad : actividades) {
+            CT += actividad.calcularCM();
+        }
+
+        return CT * 1.21;
     }
     // CCE = Calculo de Costo Estimado
 
@@ -99,29 +109,45 @@ public class EventoUniversitario {
     }
     //AS = Asignar Sala
 
-    public Actividad CA(String tipo){
-       Actividad actividad;
+    public void CA(int id, String titulo, int cupo, String tipo){
 
-       switch (tipo.toLowerCase()) {
-           case "Charla":
-               actividad = new Charla();
+        Scanner scanner = new Scanner(System.in);
+
+       switch (tipo) {
+           case "charla":
+               System.out.println("Ingrese el nombre del Disertante: ");
+               String D = scanner.nextLine();
+               Actividad charla = new Charla(id,titulo,D,cupo);
+               this.actividades.add(charla);
+               System.out.println("Se creo una actividad de tipo "+tipo+" en el evento "+titulo);
                break;
-           case "Taller":
-               actividad = new Taller();
+           case "taller":
+               System.out.println("El Taller "+titulo+" requiere uso de NoteBook? (S/N)");
+               String respuesta = scanner.nextLine().trim().toLowerCase();
+               boolean PNB = false;
+               if (respuesta == "s") {
+                    PNB = true;
+               }
+               Actividad taller = new Taller(id,titulo,PNB,cupo);
+               this.actividades.add(taller);
+               System.out.println("Se creo una actividad de tipo "+tipo+" en el evento "+titulo);
                break;
            default:
                System.out.println("Error: Actividad solicitada no encontrada");
-               return null;
        }
-       actividades.add(actividad);
-       System.out.println("Se creo una actividad de tipo "+tipo+" en el evento "+titulo);
-       return actividad;
     }
     //CA = Crear Actividad
 
     public void mostrar(){
-        System.out.println("El evento "+titulo+" con costo "+costoBase+" con id "+Id+" y con la cantidad de eventos de "+cantidadEventos);
-        System.out.println("Actualmente el evento es gratuito? -"+gratuito);;
+        System.out.println("Evento codigo=" + Id);
+        System.out.println("TÍtulo=" + titulo);
+        System.out.println("Costo=" + this.CCE());
+        System.out.println("Sala asignada: " + (sala != null ? sala.getNombre() : "Sin sala")+"\n");
+        System.out.println("Actividades:");
+        for (Actividad actividad : actividades) {
+            actividad.MI();
+            actividad.mostrarInscripciones();
+        }
     }
 }
 

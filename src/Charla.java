@@ -1,6 +1,11 @@
 public class Charla extends Actividad{
     private String disertante;
 
+    public Charla(int id, String titulo, String disertante, int cupo) {
+        super(id, titulo, cupo);
+        this.disertante = disertante;
+    }
+
     public String getDisertante() {
         return disertante;
     }
@@ -12,11 +17,11 @@ public class Charla extends Actividad{
     @Override
     public double calcularCM(){
         //CM = Costo Materiales
-        return 0;
+        return (double)0.0F;
     }
 
     @Override
     public String getTipo(){
-        return "Charla";
+        return "charla";
     }
 }
