@@ -5,3 +5,6 @@ para ir desarrollando los ejercicios y no use inteligencia artificial para compl
 y profundizar en los mismos, desde ya muchas gracias.
 
 Link: https://github.com/Santino-Eloy-Serna/PP-TP1-53503.git
+
+Si bien reconozco que este READ ME deberia tener lo que especifica en la entrega como: " 2.2. Un Readme con documentación sobre el proyecto implementado." Desconozco que tipo de documentacion 
+se pide y por ende, me vere en la situacion de dejar el READ ME sin esa informacion, lo lamento profesor
