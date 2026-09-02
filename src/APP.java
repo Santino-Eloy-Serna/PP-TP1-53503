@@ -18,12 +18,23 @@ public class APP {
 
            switch (respuesta){
                case "re":
-                   System.out.println("Ingrese el nombre del Estudiante: ");
-                   String N = scanner.nextLine();
-                   System.out.println("Ingrese el legajo del Estudiante: ");
-                   String L = scanner.nextLine();
+                   boolean CONT = true;
 
-                   estudiantes.add(new Estudiante(L,N));
+                   while (CONT){
+                       System.out.println("Ingrese el nombre del Estudiante: ");
+                       String N = scanner.nextLine();
+                       System.out.println("Ingrese el legajo del Estudiante: ");
+                       String L = scanner.nextLine();
+
+                       estudiantes.add(new Estudiante(L,N));
+
+                       System.out.println("Desea agregar otro estudiante? S/N");
+                       String Res = scanner.nextLine().trim().toLowerCase();
+
+                       if (Res.equals("n") || Res.equals("no")){
+                           CONT = false;
+                       }
+                   }
 
                    System.out.println("Desea hacer algo mas? S/N o Si/No");
                    String Res = scanner.nextLine().trim().toLowerCase();
